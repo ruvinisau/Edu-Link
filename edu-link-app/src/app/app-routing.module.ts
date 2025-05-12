@@ -11,12 +11,13 @@ export class AppRoutingModule { }*/
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginPageComponent } from './components/login-page/login-page.component';
+import { HomeComponent } from './components/featurs/home/home.component';
+import { LoginComponent } from './components/featurs/login/login.component';
 
 
 const routes: Routes = [
-  { path: 'login', redirectTo: 'components/login-page', pathMatch: 'full' },
-  { path: 'components/login-page', component: LoginPageComponent },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent,data:{title:'Login'} },
   
 ];
 

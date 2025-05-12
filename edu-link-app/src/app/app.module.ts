@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderPageComponent } from './components/header-page/header-page.component';
-
-import { HomePageComponent } from './components/home-page/home-page.component';
 import { SidemenuComponent } from './features-modules/employer/sidemenu/sidemenu.component';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,18 +11,21 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CountUpModule } from 'ngx-countup';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FooterPageComponent } from './components/footer-page/footer-page.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { HomeComponent } from './components/featurs/home/home.component';
+import { LoginComponent } from './components/featurs/login/login.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderPageComponent,
-    HomePageComponent,
     SidemenuComponent,
-    FooterPageComponent,
-    LoginPageComponent
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

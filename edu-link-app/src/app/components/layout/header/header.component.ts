@@ -1,23 +1,19 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
-import { NavigationStart, Router, Event as RouterEvent } from '@angular/router';
+import { Router } from '@angular/router';
 import { ShareDataService } from 'src/app/core/data/share-data.service';
 import { routes } from 'src/app/core/helpers/routes/routes';
 import { header } from 'src/app/core/models/sidebar-model';
+import { CommonService } from 'src/app/core/services/common/common.service';
 import { NavbarService } from 'src/app/core/services/navbar.service';
 
-
-interface data {
-  value: string;
-}
-
 @Component({
-  selector: 'app-header-page',
+  selector: 'app-header',
   standalone: false,
-  templateUrl: './header-page.component.html',
-  styleUrl: './header-page.component.scss'
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
 })
-export class HeaderPageComponent {
-  public routes = routes;
+export class HeaderComponent {
+public routes = routes;
   public searchIcon = false;
   menuElement!: ElementRef;
   navbar: Array<header> = [];
@@ -25,15 +21,21 @@ export class HeaderPageComponent {
   elementPosition!: string;
   base = '';
   page = '';
+  last = '';
   constructor(
-    private Router: Router,
+    private data: ShareDataService,
     private navservices: NavbarService,
-    private data: ShareDataService
+    private common: CommonService,
+    private router: Router
   ) {
-    this.Router.events.subscribe((data: RouterEvent) => {
-      if (data instanceof NavigationStart) {
-        this.base = data.url.split('/')[1];
-      }
+    this.common.base.subscribe((res: string) => {
+      this.base = res;
+    });
+    this.common.page.subscribe((res: string) => {
+      this.page = res;
+    });
+    this.common.last.subscribe((res: string) => {
+      this.last = res;
     });
     this.navbar = this.data.sideBar;
   }
@@ -53,19 +55,9 @@ export class HeaderPageComponent {
       this.sticky = true;
     }
   }
-  public selectedValue = '';
-
-  selectedList: data[] = [
-    { value: 'Categories' },
-    { value: 'Video & Animation' },
-    { value: 'Music & Audio' },
-    { value: 'Writing & Translation' },
-    { value: 'Digital Marketing' },
-    { value: 'Design & Creative' },
-    { value: 'Development & IT' },
-  ];
-  toggleSearch() {
+  toggleSearch(){
     this.searchIcon = !this.searchIcon;
   }
+
 
 }
